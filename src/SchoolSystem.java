@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class SchoolSystem {
 
@@ -93,6 +92,10 @@ public class SchoolSystem {
 					System.out.println("Invalid username or password.");
 				}
 			 }
+		
+			catch (IOException e) {
+				System.out.println("Error reading file: " + e.getMessage());
+			}
 		}
 		else if(choice==2){
 			System.out.println("Exiting application...");
