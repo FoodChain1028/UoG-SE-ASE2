@@ -12,6 +12,8 @@ public class SchoolSystem {
 
 	private User currentUser;
 	private boolean Exit = true;
+	private String authFilePath = "src/database/auth.txt";
+	private String teachingRequirementFilePath = "src/database/teachingRequirement.txt";
 
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
@@ -29,11 +31,10 @@ public class SchoolSystem {
 			else if (currentUser instanceof Administrator || currentUser instanceof ClassDirector){
 				switch (choice) {
 				case 1:
-					addTeachingRequirement();
+					addRequirement();
 					break;
 				case 2:
-					System.out.println("View All Requirements");
-					// This case need view function
+					viewRequirement();
 					break;
 				case 3:
 					System.out.println("Logout, please login again");
@@ -100,7 +101,7 @@ public class SchoolSystem {
 			System.out.print("Password: ");
 			String password = getUserInputString();
 			boolean loginSuccess = false;
-			FileReader filereader = new FileReader(new File("src/database/auth.txt").getAbsolutePath());
+			FileReader filereader = new FileReader(new File(authFilePath).getAbsolutePath());
 			try (BufferedReader reader = new BufferedReader(filereader)) {
 		        String line;
 		        String user = "";
@@ -183,13 +184,24 @@ public class SchoolSystem {
 		}
 	}
 	
-	public void addTeachingRequirement() throws IOException {
-		FileWriter writer = new FileWriter (new File("src/database/teachingRequirement.txt").getAbsolutePath());
+	private void addRequirement() throws IOException {
+		FileWriter writer = new FileWriter (new File(teachingRequirementFilePath).getAbsolutePath());
 		System.out.print("Enter teaching requirement: ");
         String requirement = getUserInputString();
         writer.write(requirement + "\n");
         writer.close();
         System.out.println("Requirement added successfully!");
+	}
+	
+	private void viewRequirement() throws IOException {
+		System.out.println("View All Requirements");
+        FileReader file = new FileReader(new File(teachingRequirementFilePath).getAbsolutePath());
+        BufferedReader reader = new BufferedReader(file);
+        String content;
+        while ((content = reader.readLine()) != null) {
+            System.out.println(content);
+        }
+        reader.close();
 	}
 
 
