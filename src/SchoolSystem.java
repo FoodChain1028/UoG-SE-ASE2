@@ -23,13 +23,16 @@ public class SchoolSystem {
 
 			if (currentUser == null) {
 				handleLogin(choice);
-			} else {
+			} 
+			else if (currentUser instanceof Administrator || currentUser instanceof ClassDirector){
 				switch (choice) {
 				case 1:
-					System.out.println("Feature available only to logged-in users.");
+					System.out.println("Create Teaching Requirement");
+					// This case need create and edit function
 					break;
 				case 2:
-					System.out.println("Feature available only to logged-in users.");
+					System.out.println("View All Requirements");
+					// This case need view function
 					break;
 				case 3:
 					System.out.println("Logout, please login again");
@@ -40,7 +43,21 @@ public class SchoolSystem {
 					Exit = false;
 				}
 			}
-		} while (Exit);
+			else if (currentUser instanceof User){
+				switch (choice) {
+				case 1:
+					System.out.println("View All Requirements");
+					break;
+				case 2:
+					System.out.println("Logout, please login again");
+					currentUser = null;
+					break;
+				case 3:
+					System.out.println("Exiting application...");
+					Exit = false;
+				}
+			}	
+		}while (Exit);
 	}
 
 	private void displayMenu() {
@@ -58,10 +75,9 @@ public class SchoolSystem {
 		}
 		else if (currentUser instanceof User) {
 			System.out.println("\nPart-Time Teacher Management System - Welcome " + currentUser.getName());
-			System.out.println("1. Create Teaching Requirement");
-			System.out.println("2. View All Requirements");
-			System.out.println("3. Logout");
-			System.out.println("4. Exit");
+			System.out.println("1. View All Requirements");
+			System.out.println("2. Logout");
+			System.out.println("3. Exit");
 		}
 		System.out.print("Enter your choice: ");
 	}
