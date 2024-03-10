@@ -1,3 +1,11 @@
 Name: Administrator
 Username: admin
 Password: admin123
+
+Name: Class Director
+Username: class
+Password: class123
+
+Name: Teacher
+Username: teach
+Password: teach123

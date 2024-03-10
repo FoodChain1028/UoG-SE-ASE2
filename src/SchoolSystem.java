@@ -75,19 +75,67 @@ public class SchoolSystem {
 			FileReader filereader = new FileReader(new File("src/database/auth.txt").getAbsolutePath());
 			try (BufferedReader reader = new BufferedReader(filereader)) {
 		        String line;
+		        String user = "";
 		        while ((line = reader.readLine()) != null) {
 		            line = line.trim();
-		            if (!line.isEmpty() && line.startsWith("Username:") && line.split(":\\s*")[1].equalsIgnoreCase(username)) {
+		            if(line.startsWith("Name:") && line.split(":\\s*")[1].equalsIgnoreCase("Administrator")) {
+		            	String userLine = reader.readLine();
+		            	if(userLine.split(":\\s*")[1].equals(username)) {
+		            		String passwordLine = reader.readLine();
+		            		if(passwordLine.split(":\\s*")[1].equals(password)) {
+		            			loginSuccess = true;
+		            			user ="Administrator";
+		            			break;
+		            		}
+		            	}
+		            }
+		            if(line.startsWith("Name:") && line.split(":\\s*")[1].equalsIgnoreCase("Class Director")) {
+		            	String userLine = reader.readLine();
+		            	if(userLine.split(":\\s*")[1].equals(username)) {
+		            		String passwordLine = reader.readLine();
+		            		if(passwordLine.split(":\\s*")[1].equals(password)) {
+		            			loginSuccess = true;
+		            			user ="Class Director";
+		            			break;
+		            		}
+		            	}
+		            }
+		            if(line.startsWith("Name:") && line.split(":\\s*")[1].equalsIgnoreCase("Teacher")) {
+		            	String userLine = reader.readLine();
+		            	if(userLine.split(":\\s*")[1].equals(username)) {
+		            		String passwordLine = reader.readLine();
+		            		if(passwordLine.split(":\\s*")[1].equals(password)) {
+		            			loginSuccess = true;
+		            			user ="Teacher";
+		            			break;
+		            		}
+		            	}
+		            }
+		            /*if (!line.isEmpty() && line.startsWith("Username:") 
+		            		&& line.split(":\\s*")[1].equalsIgnoreCase(username)) {
 		                String passwordLine = reader.readLine();
 		                if (passwordLine.split(":\\s*")[1].equals(password)) {
 		                    loginSuccess = true;
 		                    break;
 		                }
-		            }    
+		            }*/    
 		        }
+		     
 		    	if(loginSuccess) {
-					currentUser = new Administrator("Admin");
-					System.out.println("Login successful!");
+		    		if(user.equals("Administrator")) {
+		    			currentUser = new Administrator("Admin");
+						System.out.println("Login successful!");
+		    		}
+		    		if(user.equals("Class Director")) {
+		    			currentUser = new Administrator("ClassDirector");
+						System.out.println("Login successful!");
+		    		}
+		    		if(user.equals("Teacher")) {
+		    			currentUser = new Administrator("Teahcer");
+						System.out.println("Login successful!");
+		    		}
+					/*currentUser = new Administrator("Admin");
+					System.out.println("Login successful!");*/
 				}
 				else {
 					System.out.println("Invalid username or password.");
