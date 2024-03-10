@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 public class SchoolSystem {
 
 	private User currentUser;
+	private boolean Exit = true;
 
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
@@ -31,13 +32,15 @@ public class SchoolSystem {
 					System.out.println("Feature available only to logged-in users.");
 					break;
 				case 3:
-					System.out.println("Exiting application...");
+					System.out.println("Logout, please login again");
+					currentUser = null;
 					break;
-				default:
-					System.out.println("Invalid choice. Please try again.");
+				case 4:
+					System.out.println("Exiting application...");
+					Exit = false;
 				}
 			}
-		} while (choice != 3);
+		} while (Exit);
 	}
 
 	private void displayMenu() {
@@ -45,10 +48,18 @@ public class SchoolSystem {
 			System.out.println("\nPart-Time Teacher Management System - Login");
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
-		} else {
+		} 
+		else if (currentUser instanceof Administrator || currentUser instanceof ClassDirector){
 			System.out.println("\nPart-Time Teacher Management System - Welcome " + currentUser.getName());
-			System.out.println("1. Feature 1 (for logged-in users)");
-			System.out.println("2. Feature 2 (for logged-in users)");
+			System.out.println("1. Create Teaching Requirement");
+			System.out.println("2. View All Requirements");
+			System.out.println("3. Logout");
+			System.out.println("4. Exit");
+		}
+		else if (currentUser instanceof User) {
+			System.out.println("\nPart-Time Teacher Management System - Welcome " + currentUser.getName());
+			System.out.println("1. Create Teaching Requirement");
+			System.out.println("2. View All Requirements");
 			System.out.println("3. Logout");
 			System.out.println("4. Exit");
 		}
@@ -127,11 +138,11 @@ public class SchoolSystem {
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Class Director")) {
-		    			currentUser = new Administrator("ClassDirector");
+		    			currentUser = new ClassDirector("ClassDirector");
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Teacher")) {
-		    			currentUser = new Administrator("Teahcer");
+		    			currentUser = new User("Teahcer");
 						System.out.println("Login successful!");
 		    		}
 					/*currentUser = new Administrator("Admin");
@@ -148,6 +159,7 @@ public class SchoolSystem {
 		}
 		else if(choice==2){
 			System.out.println("Exiting application...");
+			Exit = false;
 		}
 		else{
 			System.out.println("Invalid choice. Please try again.");
