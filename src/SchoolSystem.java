@@ -31,7 +31,7 @@ public class SchoolSystem {
 			else if (currentUser instanceof Administrator || currentUser instanceof ClassDirector){
 				switch (choice) {
 				case 1:
-					addRequirement();
+					addRequirement(); // Feature available only to Administrator and ClassDirector
 					break;
 				case 2:
 					viewRequirement();
@@ -43,6 +43,9 @@ public class SchoolSystem {
 				case 4:
 					System.out.println("Exiting application...");
 					Exit = false;
+					break;
+				default:
+					System.out.println("Invalid choice. Please try again.");
 				}
 			}
 			else if (currentUser instanceof User){
@@ -57,6 +60,9 @@ public class SchoolSystem {
 				case 3:
 					System.out.println("Exiting application...");
 					Exit = false;
+					break;
+				default:
+					System.out.println("Invalid choice. Please try again.");
 				}
 			}	
 		}while (Exit);
