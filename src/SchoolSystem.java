@@ -3,8 +3,10 @@ package src;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 
 public class SchoolSystem {
 
@@ -27,8 +29,7 @@ public class SchoolSystem {
 			else if (currentUser instanceof Administrator || currentUser instanceof ClassDirector){
 				switch (choice) {
 				case 1:
-					System.out.println("Create Teaching Requirement");
-					// This case need create and edit function
+					addTeachingRequirement();
 					break;
 				case 2:
 					System.out.println("View All Requirements");
@@ -180,6 +181,15 @@ public class SchoolSystem {
 		else{
 			System.out.println("Invalid choice. Please try again.");
 		}
+	}
+	
+	public void addTeachingRequirement() throws IOException {
+		FileWriter writer = new FileWriter (new File("src/database/teachingRequirement.txt").getAbsolutePath());
+		System.out.print("Enter teaching requirement: ");
+        String requirement = getUserInputString();
+        writer.write(requirement + "\n");
+        writer.close();
+        System.out.println("Requirement added successfully!");
 	}
 
 
