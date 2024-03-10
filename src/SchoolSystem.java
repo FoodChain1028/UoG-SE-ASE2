@@ -185,7 +185,7 @@ public class SchoolSystem {
 	}
 	
 	private void addRequirement() throws IOException {
-		FileWriter writer = new FileWriter (new File(teachingRequirementFilePath).getAbsolutePath());
+		FileWriter writer = new FileWriter (new File(teachingRequirementFilePath).getAbsolutePath(),true);
 		System.out.print("Enter teaching requirement: ");
         String requirement = getUserInputString();
         writer.write(requirement + "\n");
@@ -194,7 +194,6 @@ public class SchoolSystem {
 	}
 	
 	private void viewRequirement() throws IOException {
-		System.out.println("View All Requirements");
         FileReader file = new FileReader(new File(teachingRequirementFilePath).getAbsolutePath());
         BufferedReader reader = new BufferedReader(file);
         String content;
@@ -202,6 +201,7 @@ public class SchoolSystem {
             System.out.println(content);
         }
         reader.close();
+        System.out.println("===The End of All Requirements===");
 	}
 
 
