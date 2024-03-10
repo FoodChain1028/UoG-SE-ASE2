@@ -48,7 +48,7 @@ public class SchoolSystem {
 			else if (currentUser instanceof User){
 				switch (choice) {
 				case 1:
-					System.out.println("View All Requirements");
+					viewRequirement();
 					break;
 				case 2:
 					System.out.println("Logout, please login again");
