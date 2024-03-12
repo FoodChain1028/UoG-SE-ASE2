@@ -1,8 +1,7 @@
 package src;
 
+import java.io.IOException;
 import java.io.*;
-
-import static src.SchoolSystem.getUserInputString;
 
 /**
  * Strategy for Administrator actions.
@@ -12,10 +11,11 @@ public class AdministratorStrategy implements UserStrategy {
 
 	@Override
 	public void addRequirement() throws IOException {
+		// TODO Auto-generated method stub
 		String teachingPath = SystemConfiguration.getInstance().getteachingRequirementFilePath();
-		FileWriter writer = new FileWriter(new File(teachingPath).getAbsolutePath());
+		FileWriter writer = new FileWriter(new File(teachingPath).getAbsolutePath(),true);
 		System.out.print("Enter teaching requirement: ");
-		String requirement = getUserInputString();
+		String requirement = SchoolSystem.getUserInputString();
 		writer.write(requirement + "\n");
 		writer.close();
 		System.out.println("Administrator Requirement added successfully!");
@@ -38,10 +38,10 @@ public class AdministratorStrategy implements UserStrategy {
 
 	@Override
 	public void addTrainingSession() throws IOException {
-		String teachingPath = SystemConfiguration.getInstance().getTrainingSessionFilePath();
-		FileWriter writer = new FileWriter (new File(teachingPath).getAbsolutePath(),true);
+		String trainingPath = SystemConfiguration.getInstance().getTrainingSessionFilePath();
+		FileWriter writer = new FileWriter (new File(trainingPath).getAbsolutePath(),true);
 		System.out.print("Enter training session: ");
-		String requirement = getUserInputString();
+		String requirement = SchoolSystem.getUserInputString();
 		writer.write(requirement + "\n");
 		writer.close();
 		System.out.println("Requirement added successfully!");
@@ -50,8 +50,8 @@ public class AdministratorStrategy implements UserStrategy {
 
 	@Override
 	public void viewTrainingSession() throws IOException {
-		String teachingPath = SystemConfiguration.getInstance().getTrainingSessionFilePath();
-		FileReader file = new FileReader(new File(teachingPath).getAbsolutePath());
+		String trainingPath = SystemConfiguration.getInstance().getTrainingSessionFilePath();
+		FileReader file = new FileReader(new File(trainingPath).getAbsolutePath());
 		BufferedReader reader = new BufferedReader(file);
 		String content;
 		while ((content = reader.readLine()) != null) {
