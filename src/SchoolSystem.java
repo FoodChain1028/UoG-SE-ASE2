@@ -252,7 +252,7 @@ public class SchoolSystem {
         System.out.println("===The End of All Training sessions===");
 	}
 
-	private static String getUserInputString() throws IOException {// The method is for getting input from user
+	public static String getUserInputString() throws IOException {// The method is for getting input from user
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		return reader.readLine();
 	}

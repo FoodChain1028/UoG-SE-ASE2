@@ -1,6 +1,6 @@
 package src;
 
-public abstract class User {
+public class User {
     private String name;
 
     public User(String name) {

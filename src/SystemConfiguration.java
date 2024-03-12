@@ -33,7 +33,7 @@ public class SystemConfiguration {
      * @return The resource path.
      */
     public String getAuthFilePath() {
-        return authFilePath;
+        return this.authFilePath;
     }
     public String getteachingRequirementFilePath() {
         return teachingRequirementFilePath;
