@@ -189,7 +189,7 @@ public class SchoolSystem {
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Teacher")) {
-		    			currentUser = new User("Teahcer");
+		    			currentUser = new Teacher("Teahcer");
 						System.out.println("Login successful!");
 		    		}
 					/*currentUser = new Administrator("Admin");
