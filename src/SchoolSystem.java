@@ -17,9 +17,6 @@ public class SchoolSystem {
 
 	private User currentUser;
 	private boolean Exit = true;
-	private String authFilePath = "src/database/auth.txt";
-	private String teachingRequirementFilePath = "src/database/teachingRequirement.txt";
-	private String trainingSessionFilePath = "src/database/trainList.txt";
 
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
@@ -129,7 +126,7 @@ public class SchoolSystem {
 			System.out.print("Password: ");
 			String password = getUserInputString();
 			boolean loginSuccess = false;
-			FileReader filereader = new FileReader(new File(authFilePath).getAbsolutePath());
+			FileReader filereader = new FileReader(new File(SystemConfiguration.getInstance().getAuthFilePath()).getAbsolutePath());
 			try (BufferedReader reader = new BufferedReader(filereader)) {
 		        String line;
 		        String user = "";
