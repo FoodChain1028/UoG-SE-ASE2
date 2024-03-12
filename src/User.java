@@ -1,6 +1,6 @@
 package src;
 
-public class User {
+public abstract class User {
     private String name;
 
     public User(String name) {
@@ -24,4 +24,11 @@ class ClassDirector extends User {
     public ClassDirector(String name) {
         super(name);
     }
+}
+
+class Teacher extends User {
+	
+	public Teacher(String name) {
+		super(name);
+	}
 }
