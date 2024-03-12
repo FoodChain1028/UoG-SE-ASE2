@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public interface UserStrategy {
 	public void addRequirement() throws IOException;
-	public void viewRequirement();
-	public void addTrainingSession();
-	public void viewTrainingSession();
+	public void viewRequirement() throws IOException ;
+	public void addTrainingSession() throws IOException ;
+	public void viewTrainingSession() throws IOException ;
 }
