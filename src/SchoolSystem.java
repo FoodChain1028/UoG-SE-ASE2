@@ -170,15 +170,15 @@ public class SchoolSystem {
 		     
 		    	if(loginSuccess) {
 		    		if(user.equals("Administrator")) {
-		    			currentUser = new Administrator("Administrator");
+		    			currentUser = UserFactory.createUser("Administrator", "Administrator");
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Class Director")) {
-		    			currentUser = new ClassDirector("ClassDirector");
+		    			currentUser = UserFactory.createUser("Classdirector", "Class Director");
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Teacher")) {
-		    			currentUser = new Teacher("Teahcer");
+		    			currentUser = UserFactory.createUser("Teacher", "Teacher");
 						System.out.println("Login successful!");
 		    		}
 				}
