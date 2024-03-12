@@ -135,7 +135,7 @@ public class SchoolSystem {
 		        String user = "";
 		        while ((line = reader.readLine()) != null) {
 		            line = line.trim();
-		            // The 
+		            // The logic for user check (e.g. Admin, ClassDirector and Teacher
 		            if(line.startsWith("Name:") && line.split(":\\s*")[1].equalsIgnoreCase("Administrator")) {
 		            	String userLine = reader.readLine();
 		            	if(userLine.split(":\\s*")[1].equals(username)) {
@@ -176,7 +176,7 @@ public class SchoolSystem {
 		                    loginSuccess = true;
 		                    break;
 		                }
-		            }*/    
+		            }*/
 		        }
 		     
 		    	if(loginSuccess) {
@@ -213,7 +213,7 @@ public class SchoolSystem {
 		}
 	}
 	
-	private void addRequirement() throws IOException { // 
+	private void addRequirement() throws IOException { // add method for requirement
 		FileWriter writer = new FileWriter (new File(teachingRequirementFilePath).getAbsolutePath(),true);
 		System.out.print("Enter teaching requirement: ");
         String requirement = getUserInputString();
@@ -222,7 +222,7 @@ public class SchoolSystem {
         System.out.println("Requirement added successfully!");
 	}
 	
-	private void viewRequirement() throws IOException {
+	private void viewRequirement() throws IOException {// view method for requirement
         FileReader file = new FileReader(new File(teachingRequirementFilePath).getAbsolutePath());
         BufferedReader reader = new BufferedReader(file);
         String content;
@@ -232,7 +232,7 @@ public class SchoolSystem {
         reader.close();
         System.out.println("===The End of All Requirements===");
 	}
-	private void addSession() throws IOException {
+	private void addSession() throws IOException { // add method for training session
 		FileWriter writer = new FileWriter (new File(trainingSessionFilePath).getAbsolutePath(),true);
 		System.out.print("Enter training session: ");
         String requirement = getUserInputString();
@@ -241,7 +241,7 @@ public class SchoolSystem {
         System.out.println("Requirement added successfully!");
 	}
 	
-	private void viewSession() throws IOException {
+	private void viewSession() throws IOException { // view method for training session
         FileReader file = new FileReader(new File(trainingSessionFilePath).getAbsolutePath());
         BufferedReader reader = new BufferedReader(file);
         String content;
