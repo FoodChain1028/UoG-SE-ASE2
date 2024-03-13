@@ -22,7 +22,7 @@ public class ClassDirectorStrategy implements UserStrategy {
 		String requirement = SchoolSystem.getUserInputString();
 		writer.write(requirement + "\n");
 		writer.close();
-		System.out.println("Administrator Requirement added successfully!");
+		//System.out.println("Administrator Requirement added successfully!");
 		
 	}
 
@@ -36,7 +36,7 @@ public class ClassDirectorStrategy implements UserStrategy {
 			System.out.println(content);
 		}
 		reader.close();
-		System.out.println("===The End of All Requirements===");
+		//System.out.println("===The End of All Requirements===");
 		
 	}
 
@@ -48,7 +48,7 @@ public class ClassDirectorStrategy implements UserStrategy {
 		String requirement = SchoolSystem.getUserInputString();
 		writer.write(requirement + "\n");
 		writer.close();
-		System.out.println("Requirement added successfully!");
+		//System.out.println("Requirement added successfully!");
 		
 	}
 
@@ -62,7 +62,7 @@ public class ClassDirectorStrategy implements UserStrategy {
 			System.out.println(content);
 		}
 		reader.close();
-		System.out.println("===The End of All Training sessions===");
+		//System.out.println("===The End of All Training sessions===");
 		
 	}
 }

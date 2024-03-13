@@ -13,10 +13,11 @@ import java.io.InputStreamReader;
  * Our administrator will then attempt to find suitable staff and organise training for them.
  */
 
-public class SchoolSystem {
+public class SchoolSystem implements Observer{
 
 	private User currentUser;
 	private boolean Exit = true;
+	private String notification;
 
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
@@ -34,16 +35,23 @@ public class SchoolSystem {
 			else if (currentUser instanceof Administrator || currentUser instanceof ClassDirector){
 				switch (choice) {
 				case 1:
-					currentUser.getUserStrategy().addRequirement(); // Feature available only to Administrator and ClassDirector
+					currentUser.getUserStrategy().addRequirement();// Feature available only to Administrator and ClassDirector
+					notification = "Teaching Requirement added successfully!";
+					this.update(notification);
 					break;
 				case 2:
 					currentUser.getUserStrategy().viewRequirement();
+					notification = "===The End of All Requirements===";
+					this.update(notification);
 					break;
 				case 3:
 					currentUser.getUserStrategy().addTrainingSession(); // Feature available only to Administrator and ClassDirector
+					notification = "Training added successfully!";
 					break;
 				case 4:
 					currentUser.getUserStrategy().viewTrainingSession();
+					notification ="===The End of All Training sessions===";
+					this.update(notification);
 					break;
 				case 5:
 					System.out.println("You have been logged out.");
@@ -61,9 +69,13 @@ public class SchoolSystem {
 				switch (choice) {
 				case 1:
 					currentUser.getUserStrategy().viewRequirement();
+					notification = "===The End of All Requirements===";
+					this.update(notification);
 					break;
 				case 2:
 					currentUser.getUserStrategy().viewTrainingSession();
+					notification ="===The End of All Training sessions===";
+					this.update(notification);
 					break;
 				case 3:
 					System.out.println("You have been logged out.");
@@ -84,7 +96,7 @@ public class SchoolSystem {
 		
 		// For no user logged in
 		if (currentUser == null) { 
-			System.out.println("Part-Time Teacher Management System - Login");
+			System.out.println("\nPart-Time Teacher Management System - Login");
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
 		} 
@@ -109,7 +121,7 @@ public class SchoolSystem {
 		System.out.print("Enter your choice: ");
 	}
 
-	private static int getUserInput() throws IOException { // The Exception for catching invalid number
+	private static int getUserInput() throws IOException { // The exception for catching invalid input
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			return Integer.parseInt(reader.readLine());
@@ -132,7 +144,7 @@ public class SchoolSystem {
 		        String user = "";
 		        while ((line = reader.readLine()) != null) {
 		            line = line.trim();
-		            // The logic for user check (e.g. Admin, ClassDirector and Teacher
+		            // The logic for user check (e.g. Administrator, ClassDirector and Teacher)
 		            if(line.startsWith("Name:") && line.split(":\\s*")[1].equalsIgnoreCase("Administrator")) {
 		            	String userLine = reader.readLine();
 		            	if(userLine.split(":\\s*")[1].equals(username)) {
@@ -170,15 +182,15 @@ public class SchoolSystem {
 		     
 		    	if(loginSuccess) {
 		    		if(user.equals("Administrator")) {
-		    			currentUser = UserFactory.createUser("Administrator", "Administrator");
+		    			currentUser = UserFactory.createUser(user, user);
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Class Director")) {
-		    			currentUser = UserFactory.createUser("Classdirector", "Class Director");
+		    			currentUser = UserFactory.createUser(user, user);
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Teacher")) {
-		    			currentUser = UserFactory.createUser("Teacher", "Teacher");
+		    			currentUser = UserFactory.createUser(user, user);
 						System.out.println("Login successful!");
 		    		}
 				}
@@ -205,5 +217,21 @@ public class SchoolSystem {
 	public static String getUserInputString() throws IOException {// The method is for getting input from user
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		return reader.readLine();
+	}
+	/**
+	 * Observer pattern implementation
+	 */
+	@Override
+	public void update(Object o) {
+		// TODO Auto-generated method stub
+		this.setNotification((String) o);
+		System.out.println(notification);
+	}
+	public void setNotification(String notification) {
+		this.notification = notification;
+	}
+
+	public String getNotification() {
+		return notification;
 	}
 }

@@ -7,8 +7,16 @@ import java.util.List;
  */
 class Observable {
     private List<Observer> observers = new ArrayList<>();
-
-    /**
+    private String notification;
+    
+    public String getNotification() {
+    	return notification;
+    }
+    public void setNotification(String notification) {
+    	this.notification = notification;
+    	notifyObservers();
+    }
+	/**
      * Adds an observer to the list.
      * @param observer The observer to add.
      */
@@ -29,7 +37,7 @@ class Observable {
      */
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update();
+            observer.update(this.notification);
         }
     }
 }

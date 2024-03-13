@@ -24,13 +24,12 @@ public class TeacherStrategy implements UserStrategy {
 			System.out.println(content);
 		}
 		reader.close();
-		System.out.println("===The End of All Requirements===");
+		//System.out.println("===The End of All Requirements===");
 		
 	}
 
 	@Override
 	public void addTrainingSession() throws IOException{
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -45,7 +44,7 @@ public class TeacherStrategy implements UserStrategy {
 				System.out.println(content);
 			}
 			reader.close();
-			System.out.println("===The End of All Training sessions===");
+			//System.out.println("===The End of All Training sessions===");
 		
 	}
 

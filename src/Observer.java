@@ -1,5 +1,7 @@
 package src;
 
 public interface Observer {
-  void update();
+	
+	void update(Object o);
+	
 }

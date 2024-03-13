@@ -10,7 +10,7 @@ class UserFactory {
      * @return A new User object of the specified type.
      */
     public static User createUser(String userType, String name) {
-        switch (userType.toLowerCase()) {
+        switch (userType.toLowerCase().replace(" ", "")) {
             case "administrator":
                 return new Administrator(name);
             case "classdirector":
