@@ -18,11 +18,12 @@ import java.io.InputStreamReader;
  * 4. Observer Pattern for System Updates and Notifications
  */
 
-public class SchoolSystem implements Observer{
+public class SchoolSystem {
 
 	private User currentUser;
 	private boolean Exit = true;
 	private String notification;
+	private Observable observable = new Observable();
 
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
@@ -42,21 +43,26 @@ public class SchoolSystem implements Observer{
 				case 1:
 					currentUser.getUserStrategy().addRequirement();// Feature available only to Administrator and ClassDirector
 					notification = "Teaching Requirement added successfully!";
-					this.update(notification);
+					currentUser.setNotification(notification);
+					currentUser.update(notification);
 					break;
 				case 2:
 					currentUser.getUserStrategy().viewRequirement();
 					notification = "===The End of All Requirements===";
-					this.update(notification);
+					currentUser.setNotification(notification);
+					currentUser.update(notification);
 					break;
 				case 3:
 					currentUser.getUserStrategy().addTrainingSession(); // Feature available only to Administrator and ClassDirector
 					notification = "Training added successfully!";
+					currentUser.setNotification(notification);
+					currentUser.update(notification);
 					break;
 				case 4:
 					currentUser.getUserStrategy().viewTrainingSession();
 					notification ="===The End of All Training sessions===";
-					this.update(notification);
+					currentUser.setNotification(notification);
+					currentUser.update(notification);
 					break;
 				case 5:
 					System.out.println("You have been logged out.");
@@ -75,12 +81,14 @@ public class SchoolSystem implements Observer{
 				case 1:
 					currentUser.getUserStrategy().viewRequirement();
 					notification = "===The End of All Requirements===";
-					this.update(notification);
+					currentUser.setNotification(notification);
+					currentUser.update(notification);
 					break;
 				case 2:
 					currentUser.getUserStrategy().viewTrainingSession();
 					notification ="===The End of All Training sessions===";
-					this.update(notification);
+					currentUser.setNotification(notification);
+					currentUser.update(notification);
 					break;
 				case 3:
 					System.out.println("You have been logged out.");
@@ -192,16 +200,20 @@ public class SchoolSystem implements Observer{
 		        }
 		        // Factory pattern implementation
 		    	if(loginSuccess) {
+		    		
 		    		if(user.equals("Administrator")) {
 		    			currentUser = UserFactory.createUser(user, user);
+		    			observable.addObserver(currentUser);
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Class Director")) {
 		    			currentUser = UserFactory.createUser(user, user);
+		    			observable.addObserver(currentUser);
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Teacher")) {
 		    			currentUser = UserFactory.createUser(user, user);
+		    			observable.addObserver(currentUser);
 						System.out.println("Login successful!");
 		    		}
 				}
@@ -226,23 +238,5 @@ public class SchoolSystem implements Observer{
 	public static String getUserInputString() throws IOException { // The method is for getting input from user
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		return reader.readLine();
-	}
-	
-	/**
-	 * Observer pattern implementation
-	 * @param o
-	 */
-	@Override
-	public void update(Object notification) {
-		// TODO Auto-generated method stub
-		this.setNotification((String) notification);
-		System.out.println(notification);
-	}
-	public void setNotification(String notification) {
-		this.notification = notification;
-	}
-
-	public String getNotification() {
-		return notification;
 	}
 }
