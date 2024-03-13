@@ -13,7 +13,7 @@ public class AdministratorStrategy implements UserStrategy {
 	@Override
 	public void addRequirement() throws IOException {
 		// TODO Auto-generated method stub
-		String teachingPath = SystemConfiguration.getInstance().getteachingRequirementFilePath();
+		String teachingPath = SystemConfiguration.getInstance().getTeachingRequirementFilePath();
 		FileWriter writer = new FileWriter(new File(teachingPath).getAbsolutePath(),true);
 		System.out.print("Enter teaching requirement: ");
 		String requirement = SchoolSystem.getUserInputString();
@@ -25,7 +25,7 @@ public class AdministratorStrategy implements UserStrategy {
 
 	@Override
 	public void viewRequirement() throws IOException {
-		String teachingPath = SystemConfiguration.getInstance().getteachingRequirementFilePath();
+		String teachingPath = SystemConfiguration.getInstance().getTeachingRequirementFilePath();
 		FileReader file = new FileReader(new File(teachingPath).getAbsolutePath());
 		BufferedReader reader = new BufferedReader(file);
 		String content;

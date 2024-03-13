@@ -35,7 +35,7 @@ public class SystemConfiguration {
     public String getAuthFilePath() {
         return this.authFilePath;
     }
-    public String getteachingRequirementFilePath() {
+    public String getTeachingRequirementFilePath() {
         return teachingRequirementFilePath;
     }
     public String getTrainingSessionFilePath() {
