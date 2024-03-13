@@ -11,6 +11,11 @@ import java.io.InputStreamReader;
  * Before the start of each term or semester, 
  * the class directors produce a list of teaching requirements which we must try and fill. 
  * Our administrator will then attempt to find suitable staff and organise training for them.
+ * Design Patterns: 
+ * 1. Factory Pattern for User Creation
+ * 2. Strategy Pattern for User Behaviors
+ * 3. Singleton Pattern for System Resources
+ * 4. Observer Pattern for System Updates and Notifications
  */
 
 public class SchoolSystem implements Observer{
@@ -22,7 +27,7 @@ public class SchoolSystem implements Observer{
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
 	}
-
+	// Strategy pattern implementation
 	public void run() throws IOException { 
 		int choice;
 		do {
@@ -130,14 +135,20 @@ public class SchoolSystem implements Observer{
 			return getUserInput();
 		}
 	}
-
-	private void handleLogin(int choice) throws IOException { // This method handles login authentication check
+	/** This method handles login authentication check
+	 * 
+	 * @param choice
+	 * @throws IOException
+	 */
+	
+	private void handleLogin(int choice) throws IOException {
 		if (choice == 1) {
 			System.out.print("Username: ");
 			String username = getUserInputString();
 			System.out.print("Password: ");
 			String password = getUserInputString();
 			boolean loginSuccess = false;
+			// Singleton pattern for getting file path
 			FileReader filereader = new FileReader(new File(SystemConfiguration.getInstance().getAuthFilePath()).getAbsolutePath());
 			try (BufferedReader reader = new BufferedReader(filereader)) {
 		        String line;
@@ -179,7 +190,7 @@ public class SchoolSystem implements Observer{
 		            	}
 		            }
 		        }
-		     
+		        // Factory pattern implementation
 		    	if(loginSuccess) {
 		    		if(user.equals("Administrator")) {
 		    			currentUser = UserFactory.createUser(user, user);
@@ -212,19 +223,19 @@ public class SchoolSystem implements Observer{
 		}
 	}
 	
-	
-
-	public static String getUserInputString() throws IOException {// The method is for getting input from user
+	public static String getUserInputString() throws IOException { // The method is for getting input from user
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		return reader.readLine();
 	}
+	
 	/**
 	 * Observer pattern implementation
+	 * @param o
 	 */
 	@Override
-	public void update(Object o) {
+	public void update(Object notification) {
 		// TODO Auto-generated method stub
-		this.setNotification((String) o);
+		this.setNotification((String) notification);
 		System.out.println(notification);
 	}
 	public void setNotification(String notification) {
