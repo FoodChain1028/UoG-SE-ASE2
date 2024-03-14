@@ -23,7 +23,10 @@ public class SchoolSystem {
 	private boolean Exit = true;
 	private String notification;
 	private Observable observable = new Observable();
-
+	private AdministratorStrategy adminstg = new AdministratorStrategy();
+	private ClassDirectorStrategy classstg = new ClassDirectorStrategy();
+	private TeacherStrategy teachstg = new TeacherStrategy();
+	
 	public SchoolSystem() {
 		currentUser = null; // No user logged in initially
 	}
@@ -75,7 +78,7 @@ public class SchoolSystem {
 					System.out.println("Invalid choice. Please try again.");
 				}
 			}
-			else if (currentUser instanceof User){
+			else if (currentUser instanceof Teacher){ // CanOnlyViewTheList
 				switch (choice) {
 				case 1:
 					currentUser.getUserStrategy().viewRequirement();
@@ -202,16 +205,19 @@ public class SchoolSystem {
 		    		
 		    		if(user.equals("Administrator")) {
 		    			currentUser = UserFactory.createUser(user, user);
+		    			currentUser.setUserStrategy(adminstg);
 		    			observable.addObserver(currentUser);
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Class Director")) {
 		    			currentUser = UserFactory.createUser(user, user);
+		    			currentUser.setUserStrategy(classstg);
 		    			observable.addObserver(currentUser);
 						System.out.println("Login successful!");
 		    		}
 		    		if(user.equals("Teacher")) {
 		    			currentUser = UserFactory.createUser(user, user);
+		    			currentUser.setUserStrategy(teachstg);
 		    			observable.addObserver(currentUser);
 						System.out.println("Login successful!");
 		    		}

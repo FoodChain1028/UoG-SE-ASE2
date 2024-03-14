@@ -15,6 +15,10 @@ public abstract class User implements Observer{
     public UserStrategy getUserStrategy() {
     	return Strategy;
     }
+    public UserStrategy setUserStrategy(UserStrategy Strategy) {
+    	return this.Strategy = Strategy;
+    }
+    
 	@Override
 	public void update(Object notification) {
 		// TODO Auto-generated method stub

@@ -6,10 +6,8 @@ public class Administrator extends User {
 	
 	public Administrator(String name) {
 		super(name);
-		this.Strategy = new AdministratorStrategy();
+		//this.Strategy = new AdministratorStrategy();
 	}
-	public UserStrategy getUserStrategy() {
-	    	return Strategy;	
-	}
+	
 
 }
