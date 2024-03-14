@@ -2,13 +2,14 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TechSupport {
+public class TechSupport extends User{
     
     private String currentVersion;
     private List<String> updateHistory = new ArrayList<>();
-
-    public TechSupport(String currentVersion) {
-        this.currentVersion = currentVersion;
+    
+    public TechSupport(String name) {
+    	super(name);
+    	this.currentVersion = "1.0";
     }
     
     public void update(String newVersion) {

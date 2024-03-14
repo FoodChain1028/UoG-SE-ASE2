@@ -1,6 +1,6 @@
 package src;
 
-class ClassDirector extends User {
+public class ClassDirector extends User {
 	
 	private UserStrategy Strategy;
 
